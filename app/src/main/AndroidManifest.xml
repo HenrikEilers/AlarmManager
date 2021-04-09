@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlarmManager">
         <activity
-            android:name=".MainActivity"
+            android:name=".mainActivity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AlarmManager.NoActionBar">
             <intent-filter>
