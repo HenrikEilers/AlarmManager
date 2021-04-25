@@ -1,13 +1,14 @@
 package com.example.alarmmanager.mainActivity;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.alarmmanager.R;
 import com.example.alarmmanager.database.entities.Alarm;
+import com.example.alarmmanager.startAlarmActivity.StartAlarmActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
@@ -18,17 +19,17 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnItemTouchListener {
+
+    public static final String ALARM_ID = "alarm_id";
 
     private MainViewModel mainViewModel;
 
@@ -147,6 +148,9 @@ public class MainActivity extends AppCompatActivity implements OnItemTouchListen
             mAdapter.setChecked(position,mAlarmList.get(position));
         }else{
             //TODO:AlarmActivity Here
+            Intent intent = new Intent(this, StartAlarmActivity.class);
+            intent.putExtra(MainActivity.ALARM_ID,mAlarmList.get(position).getAlarm_id());
+            startActivity(intent);
         }
     }
 
@@ -157,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements OnItemTouchListen
         mAdapter.setChecked(position,mAlarmList.get(position));
     }
 
-    //Sets all Attributest for the Deletion Design
+    //Sets all Attributs for the Deletion Design
     private void enterDeleteMode(){
         this.onDelete= true;
         this.mAdapter.setOnDelete(true);

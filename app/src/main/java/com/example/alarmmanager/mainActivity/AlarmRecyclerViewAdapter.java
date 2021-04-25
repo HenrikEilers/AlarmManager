@@ -2,7 +2,6 @@ package com.example.alarmmanager.mainActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -110,7 +109,6 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmRecycler
     public void setAlarms(Alarm[] alarms){
         this.mAlarms = alarms;
         super.notifyDataSetChanged();
-        Log.d("!!!!!!!!!!!!",alarms.length+"");
     }
 
     //Sets CheckboxStatus for one specific item
@@ -144,7 +142,7 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmRecycler
         public AlarmViewHolder(View itemView, AlarmRecyclerViewAdapter adapter) {
             super(itemView);
             textView3 = itemView.findViewById(R.id.textView3);
-            imageview = itemView.findViewById(R.id.imageView);
+            imageview = itemView.findViewById(R.id.settings_image_view);
             cardView = itemView.findViewById(R.id.cardView);
             checkBox = itemView.findViewById(R.id.checkbox);
             constraintLayout = itemView.findViewById(R.id.constraintLayout);

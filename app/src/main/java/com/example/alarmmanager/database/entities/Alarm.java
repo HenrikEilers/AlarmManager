@@ -1,5 +1,7 @@
 package com.example.alarmmanager.database.entities;
 
+import android.annotation.SuppressLint;
+
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -54,4 +56,22 @@ public class Alarm {
     public void setChecked(boolean checked) {
         isChecked = checked;
     }
+
+    @SuppressLint("DefaultLocale")
+    public static String parseDurationIntToString(int totalSec){
+        int seconds = totalSec % 60;
+        int minutes = totalSec / 60;
+        if (minutes >= 60) {
+            int hours = minutes / 60;
+            minutes %= 60;
+            if( hours >= 24) {
+                int days = hours / 24;
+                String daySingularOrPlural = (days==1)?"Tag":"Tage";
+                return String.format("%d %s %02d:%02d:%02d", days,daySingularOrPlural,hours%24, minutes, seconds);
+            }
+            return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        }
+        return String.format("%02d:%02d", minutes, seconds);
+    }
+
 }

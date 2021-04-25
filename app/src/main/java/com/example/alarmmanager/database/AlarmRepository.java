@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 
 import com.example.alarmmanager.database.entities.Alarm;
+import com.example.alarmmanager.database.relations.AlarmWithAlarmSteps;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class AlarmRepository {
 
     //LiveData Variables
     private LiveData<List<Alarm>> mAllAlarms;
+    private  LiveData<AlarmWithAlarmSteps> mAlarmWithAlarmSteps;
 
     public AlarmRepository(Application application) {
         AlarmDatabase db = AlarmDatabase.getDatabase(application);
@@ -26,6 +28,11 @@ public class AlarmRepository {
     public LiveData<List<Alarm>> getAllAlarms() {
         mAllAlarms = mAlarmDao.getAllAlarms();
         return mAllAlarms;
+    }
+
+    public LiveData<AlarmWithAlarmSteps> getAlarmWithSteps(int alarm_id) {
+        mAlarmWithAlarmSteps = mAlarmDao.getAlarmWithSteps(alarm_id);
+        return mAlarmWithAlarmSteps;
     }
 
     public void deleteAlarms(List<Alarm> alarmList){new deleteAlarmsAsyncTask(mAlarmDao).execute(alarmList);}
